@@ -16,7 +16,7 @@
   justify-content: center;
   width: 100%;
   box-shadow: 0 3px 4px -4px black;
-  padding-bottom: 2em;
+  
 }
 
 .a {
@@ -31,9 +31,12 @@
   cursor: pointer;
   margin-top: 20px;
   width: 204px;
-  height: 71px;
-  background-image: url(/image/logo.jpg);
-  background-size: cover;
+  height: 120px;
+  background-image: url(/rvsm_logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
 }
 
 .sub_nav_container {
