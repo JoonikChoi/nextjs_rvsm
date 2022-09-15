@@ -5,7 +5,7 @@ import {io} from 'socket.io-client';
 
 export default function PatientStatePage(){
     let socket
-    let address="http://localhost:3333"
+    let address="http://localhost:3333/iot"
     const userName="PATIENT_STATE"
 
     const [dates,setDates]=useState(['0','0','0','0','0','0','0','0','0'])
