@@ -1,13 +1,14 @@
-
 import PatientState from "../components/patient_state/PatientState"
-import { useEffect, useState } from "react";
-import {io} from 'socket.io-client';
+import { useEffect, useState, useRef } from "react";
+import io from 'socket.io-client';
+
+const address="https://localhost:3333"
+const userName="PATIENT_STATE"
 
 export default function PatientStatePage(){
-    let socket
-    let address="http://localhost:3333/iot"
-    const userName="PATIENT_STATE"
-
+    const socket=useRef(null);
+    let newData=useRef([]);
+    let lastTime=useRef(null);
     const [dates,setDates]=useState(['0','0','0','0','0','0','0','0','0'])
     const [heartRates,setHeartRates]=useState([0, 0, 0, 0, 0, 0,0,0,0])
     const [spo2s,setSpo2s]=useState([0, 0, 0, 0, 0, 0,0,0,0])
@@ -17,72 +18,64 @@ export default function PatientStatePage(){
     const [lowestSpo2,setLowestSpo2]=useState(-1);
     const [patientName,setPatientName]=useState("");
     const [adminName,setAdminName]=useState("");
-    
-    
-    let newData=[]//새로 받은 데이터가 들어감
-    let lastTime;
-    
+   
     useEffect(()=>{//io를 연결하고 환자명, 관리자명 받기 한번만 실행된다
-        //lastTime=getCurrentTime();//실제 실행때는 이것을 사용함
-        lastTime="2022-05-20 17:30:26";//테스트를 위해서 특정 날짜
-        socket=io.connect(address);
-        socket.emit('web_request_user_info','1');
-        socket.on('response_data', (data) => {//서버가 보낸 생체 데이터를 받음
-            if(data.length!=0){
-                newData = data;//서버가 보낸 데이터
-                X_shift();//데이터 받았으니 받은 데이터를 그래프에 업데이트  
-            }
-            
-        });
-
-        socket.on('patient_info',(data)=>{//서버로 부터 환자명, 관리자명 받고 화면에 표시
-            setPatientName(data.patient_name);
-            setAdminName(data.admin_name);
-        })
-
-        const interval=setInterval(requestData, 3000);//3초에 한번 생체 데이터 요청
-        return (()=>{
-            ()=>clearInterval(interval)
-            if(socket){
-                socket.disconnect();
-            }
+        socket.current=io(address,{transports: ["websocket"]});
+        //lastTime.current=getCurrentTime();//실제 실행때는 이것을 사용함
+        lastTime.current="2022-09-17 00:30:26";//테스트를 위해서 특정 날짜
+        if(socket.current!=null){
+            socket.current.connect();
+            socket.current.emit('request_user_info','1');
+            socket.current.on('response_bio_data', (data) => {//서버가 보낸 바이오 데이터를 받음
+                if(data.length!=0){
+                    newData.current = data;//서버가 보낸 데이터
+                    X_shift();//데이터 받았으니 받은 데이터를 그래프에 업데이트  
+                }
+            });
+            socket.current.on('response_user_info',(data)=>{//서버로 부터 환자명, 관리자명 받고 화면에 표시
+                setPatientName(data.patient_name);
+                setAdminName(data.admin_name);
+            })
+            const interval=setInterval(requestData, 3000);//3초에 한번 생체 데이터 요청
+            return (()=>{
+                clearInterval(interval)
+                socket.current.disconnect();
+            });
         }
-        )
     },[])
-
 
     function requestData(){//서버에게 환자 생체 데이터 요청하는 함수
         let data={
             user_name:userName,//테이블 이름, 환자 id
-            time:lastTime//이 시간 이후의 데이터만 가져온다
+            time:lastTime.current//이 시간 이후의 데이터만 가져온다
         }
-        
-        socket.emit('request_data', data);//서버로 요청
+        console.log("socket id: "+socket.current.id);
+        socket.current.emit('request_bio_data', data);//서버로 요청
     }
 
         
     function X_shift() {//데이터를 넣고 그래프를 업데이트하는 함수
-        const newDataLen=Object.keys(newData).length
-        lastTime=newData[newDataLen-1].TIME
+        const newDataLen=Object.keys(newData.current).length
+        lastTime.current=newData.current[newDataLen-1].TIME
         for(let i=0;i<newDataLen;i++){
             setDates((current)=>{
                 const copyArray=[...current]
-                copyArray.push(newData[i].TIME)
+                copyArray.push(newData.current[i].TIME)
                 copyArray.shift()
                 return copyArray
             })
             setHeartRates((current)=>{
                 const copyArray=[...current]
-                copyArray.push(newData[i].HeartRate)
+                copyArray.push(newData.current[i].HeartRate)
                 copyArray.shift()
-                setHeartRateInfo(newData[i].HeartRate);//최대최소값 설정
+                setHeartRateInfo(newData.current[i].HeartRate);//최대최소값 설정
                 return copyArray
             })
             setSpo2s((current)=>{
                 const copyArray=[...current]
-                copyArray.push(newData[i].Spo2)
+                copyArray.push(newData.current[i].Spo2)
                 copyArray.shift()
-                setSpo2Info(newData[i].Spo2);
+                setSpo2Info(newData.current[i].Spo2);
                 return copyArray
             })
             
@@ -161,18 +154,24 @@ export default function PatientStatePage(){
         }
     return (
         <div>
-            <PatientState 
-                patientName={patientName}
-                adminName={adminName}
-                highestHeartRate={highestHeartRate}
-                lowestHeartRate={lowestHeartRate}
-                highestSpo2={highestSpo2}
-                lowestSpo2={lowestSpo2}
-                dates={dates}
-                heartRates={heartRates}
-                spo2s={spo2s}
-               
-                />
+            {socket.current?
+                highestHeartRate&lowestHeartRate&highestSpo2&lowestSpo2==-1?
+                    <div>로딩중</div>
+                    
+                    :<PatientState 
+                        patientName={patientName}
+                        adminName={adminName}
+                        highestHeartRate={highestHeartRate}
+                        lowestHeartRate={lowestHeartRate}
+                        highestSpo2={highestSpo2}
+                        lowestSpo2={lowestSpo2}
+                        dates={dates}
+                        heartRates={heartRates}
+                        spo2s={spo2s}
+                    />
+                :<div>연결 실패 새로고침 해주세요!</div>
+            }
+            
         </div>
     )
 
