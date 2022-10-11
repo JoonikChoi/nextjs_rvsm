@@ -1,11 +1,10 @@
 import { React, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useCookies } from 'react-cookie';
-import styles from "/styles/logintest.module.css"
-import Link from 'next/link';
-
-
-// import { loginPoint } from "../../toServer/API-AccessPoint";
+//import styles from "/styles/logintest.module.css"
+import styles from "/styles/login2.module.css"
+import Link from '../../utils/ActiveLink';
+import { loginPoint } from "../../toServer/API-AccessPoint";
 
 
 export default function LoginComponent() {
@@ -24,9 +23,23 @@ export default function LoginComponent() {
         setPassword(event.target.value);
     };
 
+    const onKeyPress = (e) => {
+        if(e.key==='Enter') {
+            console.log('Press Enter');
+            loginSubmit();
+        }
+    }
+
+    useEffect(() => {
+
+        if(cookies.id === 'undefined' || cookies.id === undefined) {
+            console.log('lg component err');
+        }
+
+    }, []);
+
     async function loginSubmit() {
         console.log('loginSubmit func');
-        //https://api.portal301.com/login/session
         const response = await fetch("https://localhost:3333/login/session", {
             method: "POST",
             body: JSON.stringify({
@@ -62,15 +75,9 @@ export default function LoginComponent() {
 
     return(
 
-        <div className={styles.wrap}>
+        <div className={styles.wrap} onKeyPress={onKeyPress}>
             <div className={styles.login}>
-                <h1>Log-In</h1>
-                <h5>Welcome to RVSM!</h5>
-                {/* <div className={styles.login_sns}>
-                    <li><a href=""><i className="fab fa-instagram"></i></a></li>
-                    <li><a href=""><i className="fab fa-facebook-f"></i></a></li>
-                    <li><a href=""><i className="fab fa-twitter"></i></a></li>
-                </div> */}
+                <h1>Welcome to RVSM !</h1>
                 <div className={styles.login_id}>
                     <h4>E-mail</h4>
                     <input value={email} onChange={onChangeEmail} type="email" placeholder="Email" />

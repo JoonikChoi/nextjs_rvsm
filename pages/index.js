@@ -1,10 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import NavbarMain from '../components/Navbar'
-//import styles from '../styles/Home.module.css'
+import React, { Component } from 'react';
+import NavbarFour from '../components/Layouts/NavbarFour';
+import MainBanner from '../components/Home/MainBanner';
+import Footer from '../components/Layouts/Footer';
+import ServiceDetailsContent from '../components/Services/ServiceDetailsContent';
 
-export default function Home() {
-  return (
-    <NavbarMain />
-  )
+class Index extends Component {
+    render() {
+        return (
+            <>
+                <NavbarFour />
+                <MainBanner />
+                <ServiceDetailsContent />
+                <Footer />
+            </>
+        );
+    }
 }
+
+export default Index;
