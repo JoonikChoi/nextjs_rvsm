@@ -1,5 +1,5 @@
 import { useRef,useEffect, useState } from "react"
-
+import {Chart as ChartJS} from 'chart.js/auto'
 import {Line} from "react-chartjs-2"
 import style from "../../styles/PatientState.module.css"
 export default function PatientState({patientName,adminName,highestHeartRate,lowestHeartRate,highestSpo2,lowestSpo2,dates,heartRates,spo2s}){
