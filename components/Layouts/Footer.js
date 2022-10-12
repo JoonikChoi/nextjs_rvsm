@@ -14,7 +14,7 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src="/images/white-logo.png" alt="image" />
+                                        <img src="/images/rvsm_logo2.png" alt="image" />
                                     </a>
                                     <p>Project RVSM에 와주셔서 감사합니다!<br />Github에 프로젝트 소스코드가 있습니다. :)</p>
                                 </div>

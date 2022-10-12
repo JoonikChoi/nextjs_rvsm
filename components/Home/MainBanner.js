@@ -9,7 +9,7 @@ const MainBanner = () => {
                     <div className="col-lg-6">
                         <div className="hero-banner-content">
                             <h1>RVSM</h1>
-                            <p>Remote Vital Sign Monitoring , 프로젝트 RVSM에 오신 것을 환영합니다.</p>
+                            <p>Remote Vital Sign Monitoring <br /> 영남대학교 종합설계 프로젝트 RVSM에 오신 것을 환영합니다.</p>
                         </div>
                     </div>
 

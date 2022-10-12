@@ -1,8 +1,3 @@
-
-import PatientState from "../components/RVSM/PatientState"
-import { useEffect, useState } from "react";
-import {io} from 'socket.io-client';
-
 export default function rvsmIndex(){
 
     return (
@@ -12,3 +7,5 @@ export default function rvsmIndex(){
     )
 
 }
+
+

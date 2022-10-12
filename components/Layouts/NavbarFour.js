@@ -52,7 +52,7 @@ class NavbarFour extends Component {
                             <nav className="navbar navbar-expand-md navbar-light">
                                 <Link href="/">
                                     <a className="navbar-brand">
-                                        <img src="/images/black-logo.png" className="optional-logo" alt="logo" />
+                                        <img src="/images/rvsm_logo2.png" className="optional-logo" alt="logo" />
                                     </a>
                                 </Link>
 
