@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Footer from "../components/Layouts/Footer";
-import LoginComponent from "../components/Login/LoginComponent";
+import LoginComponent from "../components/login/LoginComponent";
 import PageBanner from '../components/Common/PageBanner';
 import NavbarFour from "../components/Layouts/NavbarFour";
 
