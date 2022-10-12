@@ -6,7 +6,6 @@ import styles from "/styles/login2.module.css"
 import Link from '../../utils/ActiveLink';
 import { loginPoint } from "../../toServer/API-AccessPoint";
 
-
 export default function LoginComponent() {
 
     const router = useRouter();
@@ -32,6 +31,7 @@ export default function LoginComponent() {
 
     useEffect(() => {
 
+
         if(cookies.id === 'undefined' || cookies.id === undefined) {
             console.log('lg component err');
         }
@@ -40,7 +40,7 @@ export default function LoginComponent() {
 
     async function loginSubmit() {
         console.log('loginSubmit func');
-        const response = await fetch("https://localhost:3333/login/session", {
+        const response = await fetch(loginPoint, {
             method: "POST",
             body: JSON.stringify({
                 email: email,

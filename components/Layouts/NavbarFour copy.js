@@ -1,33 +1,32 @@
-import React, { Component, useEffect, useState, useRef } from 'react';
-import { useCookies } from 'react-cookie';
+import React, { Component } from 'react';
 import Link from '../../utils/ActiveLink';
-export default function NavbarFour() {
+
+class NavbarFour extends Component {
 
     // Search Form
-    const [searchForm, setSearchForm] = useState(false);
-    const isSignIn = useRef(false);
-    const [state, setState] = useState({display: false, collapsed: true});
-    const [_isMounted, setIsMounted] = useState(false);
-    const [cookies, setCookie] = useCookies(['id']);
-
-    const handleSearchForm = () => {
-        setSearchForm((prev) => !prev);
+    state = {
+        searchForm: false,
+    };
+    handleSearchForm = () => {
+        this.setState( prevState => {
+            return {
+                searchForm: !prevState.searchForm
+            };
+        });
     }
 
-    const toggleNavbar = () => {
-        setState((prev) => !this.prev.collapsed)
+    // Navbar
+    _isMounted = false;
+    state = {
+        display: false,
+        collapsed: true
+    };
+    toggleNavbar = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
     }
-
-    useEffect(() => {
-
-        if (cookies.id === undefined || cookies.id === 'undefined') {
-            console.log('cookie is undefined...');
-            isSignIn.current = false;
-        } else {
-            isSignIn.current = true;
-        }
-
-
+    componentDidMount() {
         let elementId = document.getElementById("navbar");
         document.addEventListener("scroll", () => {
             if (window.scrollY > 170) {
@@ -36,19 +35,16 @@ export default function NavbarFour() {
                 elementId.classList.remove("is-sticky");
             }
         });
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
-        return () => {
-            setIsMounted(false);
-        };
-
-    }, []);
-
-    
-    const { collapsed } = state;
-    const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
-    const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
-    
-    return (
+    render() {
+        const { collapsed } = this.state;
+        const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
+        const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
+        return (
             <>
                <div id="navbar" className="navbar-area navbar-style-four">
                     <div className="main-nav">
@@ -61,7 +57,7 @@ export default function NavbarFour() {
                                 </Link>
 
                                 <button 
-                                    onClick={toggleNavbar} 
+                                    onClick={this.toggleNavbar} 
                                     className={classTwo}
                                     type="button" 
                                     data-toggle="collapse" 
@@ -92,27 +88,11 @@ export default function NavbarFour() {
                                             </Link>
                                         </li>
  
-                                        {isSignIn.current === false
-                                        ? 
                                         <li className="nav-item">
                                             <Link href="/login" activeClassName="active">
-                                                <a className="nav-link">Log In</a>
+                                                <a className="nav-link">Login</a>
                                             </Link>
                                         </li>
-                                        :
-                                        <>
-                                        <li className="nav-item">
-                                            <Link href="/mypage" activeClassName="active">
-                                                <a className="nav-link">{cookies.id}님</a>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link href="/logout" activeClassName="active">
-                                                <a className="nav-link">Log Out</a>
-                                            </Link>
-                                        </li>
-                                        </>
-                                        }
 
                                     </ul>
                                     
@@ -120,22 +100,22 @@ export default function NavbarFour() {
 
                                         <div className="option-item">
                                             <i 
-                                                onClick={handleSearchForm} 
+                                                onClick={this.handleSearchForm} 
                                                 className="search-btn flaticon-search"
                                                 style={{
-                                                    display: state.searchForm ? 'none' : 'block'
+                                                    display: this.state.searchForm ? 'none' : 'block'
                                                 }}
                                             ></i>
 
                                             <i 
-                                                onClick={handleSearchForm} 
-                                                className={`close-btn fas fa-times ${state.searchForm ? 'active' : ''}`}
+                                                onClick={this.handleSearchForm} 
+                                                className={`close-btn fas fa-times ${this.state.searchForm ? 'active' : ''}`}
                                             ></i>
                                             
                                             <div 
                                                 className="search-overlay search-popup"
                                                 style={{
-                                                    display: state.searchForm ? 'block' : 'none'
+                                                    display: this.state.searchForm ? 'block' : 'none'
                                                 }}
                                             >
                                                 <div className='search-box'>
@@ -158,3 +138,6 @@ export default function NavbarFour() {
             </>
         );
     }
+}
+
+export default NavbarFour;
