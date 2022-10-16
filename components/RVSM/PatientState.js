@@ -53,8 +53,8 @@ export default function PatientState({patientName,adminName,highestHeartRate,low
     }
     return (
         <div>
-            <div id={style.title}>Vital Sign Chart</div>
-            <div id={style.red_line}></div>
+            <div className={style.top_box}></div>
+            <div className={style.red_line}></div>
 
             <div id={style.info_box}>
                 <div id={style.user_info_box} className={style.text}>

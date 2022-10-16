@@ -5,7 +5,7 @@
     font-weight: bold;
     font-size: 20px;
 }
-#red_line{
+.red_line{
     margin-top: 10px;
     margin-bottom:10px ;
     height:2px;
@@ -44,6 +44,7 @@
     word-break: normal;
     font-size: 10px;
     padding-top: 30px;
+    color: black;
 }
 #chart_box{
    height: 39vh;
@@ -80,4 +81,7 @@
 }
 .text{
 font-size: 14px;
+}
+.top_box{
+    margin-bottom: 110px;
 }
