@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import style from "../../styles/PatientList.module.css";
+import style from "../../styles/patientList.module.css";
 export default function PatientList({posts,loading}){
     return(
         <div>
