@@ -1,0 +1,35 @@
+.top_box{
+    margin-bottom: 110px;
+}
+.list_box{
+    text-align: center;
+}
+.list_item{
+    list-style:none;
+    border: 1px solid black;
+    margin:30px;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 60px;
+    width: 80vw;
+    padding: 10px;
+    display: inline-block;
+    text-align: left;
+}
+.link_state{
+    float: right;
+    width: 100px;
+    height: 50px;
+    display: inline-blocks;
+    background-color: #ff4800;
+    border: 1px solid #ff4800;
+    font-size: 15px;
+    color: white;
+    border-radius: 8px 8px 8px 8px;
+    text-align: center;
+}
+.link_state:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
