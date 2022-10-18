@@ -15,7 +15,9 @@ export default function PatientList({posts,loading}){
                         posts.map((post)=>(
                             <li key={post.id} className={style.list_item} >
                                 <span>{post.title}</span>
-                                <Link href={'/rvsm/iot'}><div className={style.link_state}>상태 확인</div></Link> 
+                                <Link href={'/rvsm/iot'}>
+                                    <div className={style.link_state}>상태 확인</div>
+                                </Link> 
                             </li>
                         ))
                     }

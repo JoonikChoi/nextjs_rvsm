@@ -9,7 +9,6 @@ export default function Pagination({postsPerPage,totalPosts,paginate}){
     }
     return(
         <nav>
-            
             <ul className={style.pagination}>
                 {
                     pageNumbers.map((number)=>(

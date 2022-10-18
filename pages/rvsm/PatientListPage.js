@@ -24,7 +24,6 @@ export default function PatientListPage(){
         fetchPosts();
     },[]);
 
-    //get current posts
     const indexOfLastPost=currentPage*postsPerPage;
     const indexOfFirstPost=indexOfLastPost-postsPerPage;
     const currentPosts=posts.slice(indexOfFirstPost,indexOfLastPost);
