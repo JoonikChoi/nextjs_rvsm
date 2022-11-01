@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import style from "../../styles/patientList.module.css";
-export default function PatientList({posts,loading}){
+export default function PatientList({patients,loading}){
 
 
     return(
@@ -14,10 +14,13 @@ export default function PatientList({posts,loading}){
                 <>
                 <ul className={style.list_box}>
                     {
-                        posts.map((post)=>(
-                            <li key={post.ID} className={style.list_item} >
-                                <span>{post.NAME}</span>
-                                <Link href={'/rvsm/iot'}>
+                        patients.map((patient)=>(
+                            <li key={patient.ID} className={style.list_item} >
+                                <span>{patient.NAME}</span>
+                                <Link 
+                                    href={`/rvsm/patientState/${patient.ID}`}
+                                   
+                                >
                                     <div className={style.link_state}>상태 확인</div>
                                 </Link> 
                             </li>

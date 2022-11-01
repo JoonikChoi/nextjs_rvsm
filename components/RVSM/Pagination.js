@@ -1,10 +1,10 @@
 import React from "react";
 import style from "../../styles/pagination.module.css";
 
-export default function Pagination({postsPerPage,totalPosts,paginate}){
+export default function Pagination({patientsPerPage,totalPatients,paginate}){
     const pageNumbers=[];
     const showingNumbs=0;
-    for(let idx=1;idx<=Math.ceil(totalPosts/postsPerPage);idx++){
+    for(let idx=1;idx<=Math.ceil(totalPatients/patientsPerPage);idx++){
         pageNumbers.push(idx);
     }
     return(

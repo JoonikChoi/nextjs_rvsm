@@ -1,9 +1,10 @@
-import PatientState from "../../components/RVSM/PatientState"
+import PatientState from "../../../components/RVSM/PatientState"
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import io from 'socket.io-client';
-import NavbarFour from "../../components/Layouts/NavbarFour";
-import Footer from "../../components/Layouts/Footer";
+import NavbarFour from "../../../components/Layouts/NavbarFour";
+import Footer from "../../../components/Layouts/Footer";
+
 
 let address="http://localhost:3333"
 
@@ -172,16 +173,7 @@ export default function PatientStatePage(){
                 heartRates={heartRates}
                 spo2s={spo2s}
             />
-             
-            {
-                router.isReady?
-                <div>
-                   <Footer />
-                </div>
-                :<div>loading</div>
-            }
-            
-            
+            <Footer /> 
         </>
     )
 
