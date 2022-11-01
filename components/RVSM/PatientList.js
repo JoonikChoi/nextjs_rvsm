@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import style from "../../styles/patientList.module.css";
 export default function PatientList({posts,loading}){
+
+
     return(
         <div>
             <div className={style.top_box}></div>
@@ -9,7 +11,7 @@ export default function PatientList({posts,loading}){
                 loading?
                 <div>loading...</div>
                 :
-                
+                <>
                 <ul className={style.list_box}>
                     {
                         posts.map((post)=>(
@@ -22,6 +24,7 @@ export default function PatientList({posts,loading}){
                         ))
                     }
                 </ul>
+                </>
             }
         </div>
     )

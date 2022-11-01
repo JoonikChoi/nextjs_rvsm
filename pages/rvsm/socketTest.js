@@ -3,12 +3,18 @@ import { useEffect, useState, useRef } from "react";
 import io from 'socket.io-client';
 
 // const socket = io('https://localhost:3333',{transports: ["websocket"]});
-const SOCKET_SERVER_URL = 'https://localhost:3333';
+const SOCKET_SERVER_URL = 'http://localhost:3333';
 
 export default function socketTest(){
     //let socket
    
     const socketRef = useRef();
+    const [id, setId] = useState("");
+
+    const nameChange = (e) => {
+      setId(e.target.value);
+    }
+
 
     useEffect(() => {
       socketRef.current = io(SOCKET_SERVER_URL, {
@@ -30,15 +36,15 @@ export default function socketTest(){
 
 
       const socketTest = () => {
-
-        socketRef.current.emit("echo", 'ehco test msg by joonik');
-        console.log('hello');
+        console.log('id?', id);
+        socketRef.current.emit("data", {HospitalCode : "YUMC", id : id});
       }
 
 
     return(
     <>
-    <h2 onClick={socketTest}>Click Me, echo event emit!</h2>
+      <input type="text" value={id} onChange={nameChange} placeholder="환자id입력"></input>
+      <button onClick={socketTest}>Fake 디바이스 값 보내기</button>
     </>
     );
 
