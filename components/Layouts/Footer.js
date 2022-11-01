@@ -14,13 +14,13 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src="/images/rvsm_logo2.png" alt="image" />
+                                        <img src="/images/rvsm_logo_w.png" alt="image" width="50" height="50" />
                                     </a>
                                     <p>Project RVSM에 와주셔서 감사합니다!<br />Github에 프로젝트 소스코드가 있습니다. :)</p>
                                 </div>
 
                                 <ul className="social">
-                                    <li> 
+                                    <li>
                                         <a href="https://www.facebook.com/" target="_blank">
                                             <i className="flaticon-facebook-letter-logo"></i>
                                         </a>
@@ -92,7 +92,7 @@ class Footer extends Component {
                                         omybell201@gmail.com
                                     </li>
                                     <li>
-                                        <span>Phone:</span> 
+                                        <span>Phone:</span>
                                         +082 010 4222 2774
                                     </li>
                                 </ul>
@@ -102,7 +102,7 @@ class Footer extends Component {
                 </div>
 
                 <div className="copyright-area">
-                    
+
                 </div>
 
                 <div className="circle-map">

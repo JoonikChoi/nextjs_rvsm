@@ -10,7 +10,7 @@ import '../styles/responsive.css';
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import Loader from '../components/Shared/Loader'; 
+import Loader from '../components/Shared/Loader';
 import GoTop from '../components/Shared/GoTop';
 
 export default class MyApp extends App {
@@ -19,7 +19,7 @@ export default class MyApp extends App {
         loading: true
     };
     componentDidMount() {
-        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 2000); 
+        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 2000);
     }
     componentWillUnmount() {
         if (this.timerHandle) {
@@ -27,20 +27,20 @@ export default class MyApp extends App {
             this.timerHandle = 0;
         }
     }
-    render () {
+    render() {
         const { Component, pageProps } = this.props
         return (
             <>
                 <Head>
-                    <meta 
-                        name="viewport" 
-                        content="width=device-width, initial-scale=1, shrink-to-fit=no" 
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1, shrink-to-fit=no"
                     />
-                    <title>Bariton - IT Machine Learning React Next Template</title>
+                    <title>RVSM - Remote Vital Sign Monitoring</title>
                 </Head>
 
                 <Component {...pageProps} />
-                
+
                 {/* Preloader */}
                 <Loader loading={this.state.loading} />
 
