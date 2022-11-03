@@ -53,7 +53,7 @@ export default function LoginComponent() {
         if (status === 200) {
             console.log(status);
             setCookie('id', data.id, { maxAge: 2000 });
-            //setCookie('nickname', data.nickname, { maxAge: 2000 });
+            setCookie('nickname', data.nickname, { maxAge: 2000 });
             router.push("/rvsm/PatientListPage");   //전체 환자 리스트
         } else if (status === 400) {
             console.log(status);

@@ -103,7 +103,7 @@ export default function NavbarFour() {
                                         <>
                                             <li className="nav-item">
                                                 <Link href="/mypage" activeClassName="active">
-                                                    <a className="nav-link">{cookies.id}님</a>
+                                                    <a className="nav-link">{cookies.nickname}님</a>
                                                 </Link>
                                             </li>
                                             <li className="nav-item">
