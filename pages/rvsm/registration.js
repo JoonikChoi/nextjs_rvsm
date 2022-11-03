@@ -22,6 +22,20 @@ export default function registration() {
     const patientNameChange = (e) => {
         setPatientName(e.target.value);
     }
+    function registration(){
+        if(hospitalCode.length===0){
+            alert("병원코드를 입력하세요.");
+        }
+        else if(id.length===0){
+            alert("ID를 입력하세요.");
+        }
+        else if(patientName.length===0){
+            alert("환자 이름을 입력하세요.");
+        }
+        else{
+            sendPost();
+        }
+    }
     const sendPost = async () => {
         const response = await fetch(patientRegistrationPoint, {
             method: "POST",
@@ -38,6 +52,11 @@ export default function registration() {
         let status = data.status;
         if (status == 200) {
             alert(data.name + "님의 등록이 완료되었습니다.");
+            setMessage("병원코드, 환자 id, 환자 이름을 입력해주세요.");
+            setMessageColor("black");
+            setHospitalCode("");
+            setId("");
+            setPatientName("");
         }
         else if (status == 400) {
             setMessage("등록 실패. 입력 정보를 확인하세요.");
@@ -54,7 +73,7 @@ export default function registration() {
                 <input className={style.input_box} type="text" value={patientName} onChange={patientNameChange} placeholder="환자 이름 입력"></input>
                 <span style={{ color: messageColor }}>{message}</span>
                 <br></br>
-                <button className={style.registration_btn} onClick={sendPost}>환자 등록</button>
+                <button className={style.registration_btn} onClick={registration}>환자 등록</button>
             </div>
             <Footer />
         </div>
