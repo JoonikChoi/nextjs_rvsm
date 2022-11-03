@@ -7,6 +7,11 @@ export default function PatientList({patients,loading}){
     return(
         <div>
             <div className={style.top_box}></div>
+            
+            <Link href={'/rvsm/registration'}>
+                <button className={style.registration_btn}>환자 등록하기</button>
+            </Link>
+
             {
                 loading?
                 <div>loading...</div>

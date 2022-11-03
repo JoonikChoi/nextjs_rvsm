@@ -16,7 +16,7 @@ class ServiceDetailsContent extends Component {
                             <div className="option">
                                 <div className="btn-box">
                                     <div>
-                                        <Link  href="/rvsm/PatientListPage">
+                                        <Link  href="/login">
                                             <a className="btn btn-primary">Start RVSM</a>
                                         </Link>
                                     </div>

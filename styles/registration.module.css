@@ -1,0 +1,35 @@
+.wrap {
+    padding-top: 150px;
+    text-align: center;
+    
+}
+.registration_box{
+    margin:auto;
+    width: 60vh;
+    height: 500px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.input_box{
+    margin:30px auto;
+    height:40px;
+    width: 100%;
+    display: block;
+}
+.registration_btn{
+    width: 100px;
+    height: 50px;
+    background-color: #ff4800;
+    border: 1px solid #ff4800;
+    font-size: 15px;
+    color: white;
+    border-radius: 8px 8px 8px 8px;
+    text-align: center;
+}
+.registration_btn:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
