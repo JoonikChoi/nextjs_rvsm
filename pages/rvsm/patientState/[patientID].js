@@ -92,9 +92,9 @@ export default function PatientStatePage(){
             })
             setTemperature((current)=>{
                 const copyArray=[...current]
-                copyArray.push(newData.current[i].Spo2-10)//temp로 변경필요
+                copyArray.push(newData.current[i].Temperature)//temp로 변경필요
                 copyArray.shift()
-                setTemperatureInfo(newData.current[i].Spo2-10);
+                setTemperatureInfo(newData.current[i].Temperature);
                 return copyArray
             })
             
@@ -188,7 +188,7 @@ export default function PatientStatePage(){
     function getCurrentTime()//현재시간을 구하는 함수
         {
             var now = new Date();	// 현재 날짜 및 시간
-            now.setSeconds(now.getSeconds()-2);//현재에서 2초전으로 변경
+            now.setSeconds(now.getSeconds()-5);//현재에서 5초전으로 변경
             var year=now.getFullYear();
             var mon=now.getMonth()+1;
             var day=now.getDate();
