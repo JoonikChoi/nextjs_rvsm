@@ -18,14 +18,12 @@ export default function PatientStatePage() {
     const [heartRates, setHeartRates] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [spo2s, setSpo2s] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [temperature, setTemperature] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
-
     const [highestHeartRate, setHighestHeartRate] = useState(-1);
     const [lowestHeartRate, setLowestHeartRate] = useState(-1);
     const [highestSpo2, setHighestSpo2] = useState(-1);
     const [lowestSpo2, setLowestSpo2] = useState(-1);
     const [highestTemperature, setHighestTemperature] = useState(-1);
     const [lowestTemperature, setLowestTemperature] = useState(-1);
-
     const [patientName, setPatientName] = useState("");
     const [adminName, setAdminName] = useState("");
     useEffect(() => {
@@ -80,6 +78,7 @@ export default function PatientStatePage() {
                 const copyArray = [...current]
                 copyArray.push(newData.current[i].HeartRate)
                 copyArray.shift()
+                console.log("heartrate :" + newData.current[i].HeartRate);
                 setHeartRateInfo(newData.current[i].HeartRate);//최대최소값 설정
                 return copyArray
             })
@@ -179,7 +178,6 @@ export default function PatientStatePage() {
                 if (current > data) {
                     return data
                 }
-
                 else {
                     return current
                 }
