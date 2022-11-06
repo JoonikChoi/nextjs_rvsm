@@ -17,10 +17,13 @@ export default function PatientStatePage() {
     const [dates, setDates] = useState(['0', '0', '0', '0', '0', '0', '0', '0', '0'])
     const [heartRates, setHeartRates] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [spo2s, setSpo2s] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
+    const [temperature, setTemperature] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [highestHeartRate, setHighestHeartRate] = useState(-1);
     const [lowestHeartRate, setLowestHeartRate] = useState(-1);
     const [highestSpo2, setHighestSpo2] = useState(-1);
     const [lowestSpo2, setLowestSpo2] = useState(-1);
+    const [highestTemperature, setHighestTemperature] = useState(-1);
+    const [lowestTemperature, setLowestTemperature] = useState(-1);
     const [patientName, setPatientName] = useState("");
     const [adminName, setAdminName] = useState("");
     useEffect(() => {
@@ -45,7 +48,7 @@ export default function PatientStatePage() {
                 setPatientName(data.patient_name);
                 setAdminName(data.admin_name);
             })
-            const interval = setInterval(requestData, 1000);//3초에 한번 생체 데이터 요청
+            const interval = setInterval(requestData, 3000);//3초에 한번 생체 데이터 요청
             return (() => {
                 clearInterval(interval)
                 socket.current.disconnect();
@@ -85,6 +88,14 @@ export default function PatientStatePage() {
                 copyArray.push(newData.current[i].Spo2)
                 copyArray.shift()
                 setSpo2Info(newData.current[i].Spo2);
+                return copyArray
+            })
+
+            setTemperature((current) => {
+                const copyArray = [...current]
+                copyArray.push(newData.current[i].Temperature)//temp로 변경필요
+                copyArray.shift()
+                setTemperatureInfo(newData.current[i].Temperature);
                 return copyArray
             })
 
@@ -147,6 +158,34 @@ export default function PatientStatePage() {
             }
         })
     }
+    function setTemperatureInfo(data) {//최저 최대 산소포화도 표시 
+        setHighestTemperature((current) => {
+            if (current == -1) {
+                return data
+            }
+            else {
+                if (current < data) {
+                    return data
+                }
+                else {
+                    return current
+                }
+            }
+        })
+        setLowestTemperature((current) => {
+            if (current == -1) {
+                return data
+            }
+            else {
+                if (current > data) {
+                    return data
+                }
+                else {
+                    return current
+                }
+            }
+        })
+    }
     function getCurrentTime()//현재시간을 구하는 함수
     {
         var now = new Date();	// 현재 날짜 및 시간
@@ -171,9 +210,12 @@ export default function PatientStatePage() {
                 lowestHeartRate={lowestHeartRate}
                 highestSpo2={highestSpo2}
                 lowestSpo2={lowestSpo2}
+                highestTemperature={highestTemperature}
+                lowestTemperature={lowestTemperature}
                 dates={dates}
                 heartRates={heartRates}
                 spo2s={spo2s}
+                temperature={temperature}
             />
             <Footer />
         </>

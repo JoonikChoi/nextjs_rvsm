@@ -19,6 +19,7 @@
     display: block;
 }
 .registration_btn{
+    margin-top: 20px;
     width: 100px;
     height: 50px;
     background-color: #ff4800;
