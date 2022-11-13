@@ -21,22 +21,7 @@ class Footer extends Component {
 
                                 <ul className="social">
                                     <li>
-                                        <a href="https://www.facebook.com/" target="_blank">
-                                            <i className="flaticon-facebook-letter-logo"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/" target="_blank">
-                                            <i className="flaticon-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/" target="_blank">
-                                            <i className="flaticon-instagram-logo"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/" target="_blank">
+                                        <a href="https://youtu.be/ArZEYlgkNPo" target="_blank">
                                             <i className="flaticon-youtube-play-button"></i>
                                         </a>
                                     </li>
@@ -50,7 +35,7 @@ class Footer extends Component {
 
                                 <ul className="footer-services-list">
                                     <li>
-                                        <Link href="/service-details">
+                                        <Link href="/services">
                                             <a>생체 정보 실시간 모니터링</a>
                                         </Link>
                                     </li>
@@ -69,14 +54,10 @@ class Footer extends Component {
 
                                 <ul className="quick-links-list">
                                     <li>
-                                        <Link href="#">
-                                            <a>YU Computer Science portal</a>
-                                        </Link>
+                                            <a href='https://cse.yu.ac.kr/cse/index.do'>YU Computer Science portal</a>
                                     </li>
                                     <li>
-                                        <Link href="#">
-                                            <a>Our GitHub address</a>
-                                        </Link>
+                                            <a href='https://github.com/JoonikChoi/nextjs-portal301'>Our GitHub address</a>
                                     </li>
                                 </ul>
                             </div>
@@ -84,12 +65,14 @@ class Footer extends Component {
 
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="single-footer-widget">
-                                <h3>Contact to Developer</h3>
+                                <h3>Developers Name</h3>
 
                                 <ul className="footer-contact-list">
                                     <li>
-                                        <span>Email:</span>
-                                        omybell201@gmail.com
+                                        <span>Thank you for your effort!<br /></span>
+                                        &nbsp; 최준익&nbsp; 김선주<br />
+                                        &nbsp; 김도연&nbsp; 박성혁<br />
+
                                     </li>
                                     <li>
                                         <span>Phone:</span>

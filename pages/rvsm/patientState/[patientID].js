@@ -44,6 +44,13 @@ export default function PatientStatePage() {
                     X_shift();//데이터 받았으니 받은 데이터를 그래프에 업데이트  
                 }
             });
+            socket.current.on('bioData-v2', (data) => {//서버가 보낸 바이오 데이터를 받음
+                console.log('bioData v2 execute...');
+                if (data.length != 0) {
+                    newData.current = data;//서버가 보낸 데이터
+                    X_shift();//데이터 받았으니 받은 데이터를 그래프에 업데이트  
+                }
+            });
             socket.current.on('response_user_info', (data) => {//서버로 부터 환자명, 관리자명 받고 화면에 표시
                 setPatientName(data.patient_name);
                 setAdminName(data.admin_name);
