@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
-class ServicesContent extends Component {
-    render() {
+export default function ServicesContent() {
+
+    
+
         return (
+            <>
             <section className="services-area bg-f2f6f9 ptb-110">
                 <div className="container">
                     <div className="row">
@@ -209,8 +212,6 @@ class ServicesContent extends Component {
                     <img src="/images/shape/dot6.png" alt="image" />
                 </div>
             </section>
+            </>
         );
     }
-}
-
-export default ServicesContent;

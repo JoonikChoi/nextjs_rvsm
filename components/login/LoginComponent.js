@@ -32,6 +32,8 @@ export default function LoginComponent() {
     useEffect(() => {
         if (cookies.id === 'undefined' || cookies.id === undefined) {
             console.log('lg component err');
+        } else {
+            router.push("/rvsm/PatientListPage"); 
         }
 
     }, []);

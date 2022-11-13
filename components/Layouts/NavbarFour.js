@@ -24,6 +24,7 @@ export default function NavbarFour() {
             console.log('cookie is undefined...');
             isSignIn.current = false;
         } else {
+            console.log('cookie is Defined...');
             isSignIn.current = true;
         }
 

@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import React, { Component } from 'react';
+import { useCookies } from 'react-cookie';
 
-class ServiceDetailsContent extends Component {
-    render() {
-        return (
+export default function ServiceDetailsContent() {
+
+    const [cookies, setCookie] = useCookies(['id']);
+
+
+    return (
+        <>
             <div className="services-details-area ptb-110">
                 <div className="container">
                     <div className="services-details-overview">
@@ -16,7 +21,7 @@ class ServiceDetailsContent extends Component {
                             <div className="option">
                                 <div className="btn-box">
                                     <div>
-                                        <Link  href="/login">
+                                        <Link href="/login">
                                             <a className="btn btn-primary">Start RVSM</a>
                                         </Link>
                                     </div>
@@ -30,8 +35,6 @@ class ServiceDetailsContent extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+        </>
+    );
 }
-
-export default ServiceDetailsContent;
