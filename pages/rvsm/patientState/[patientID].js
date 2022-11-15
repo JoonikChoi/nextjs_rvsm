@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 import io from 'socket.io-client';
 import NavbarFour from "../../../components/Layouts/NavbarFour";
 import Footer from "../../../components/Layouts/Footer";
+import { socketPoint } from "../../../toServer/API-AccessPoint";
 
 
-let address = "http://localhost:3333"
+let address = socketPoint;
 
 export default function PatientStatePage() {
     const router = useRouter();
