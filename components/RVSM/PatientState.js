@@ -18,14 +18,14 @@ export default function PatientState({patientName,adminName,highestHeartRate,low
                 borderWidth: 1,
                 data: heartRates
             },
-            {
-                type:'line',
-                label: 'Spo2',
-                backgroundColor: 'rgba(87, 98, 255, 1)',//선색
-                borderColor: 'rgba(87, 98, 255, 1)',//선 테두리색
-                borderWidth: 1,
-                data: spo2s
-            },
+            // {
+            //     type:'line',
+            //     label: 'Spo2',
+            //     backgroundColor: 'rgba(87, 98, 255, 1)',//선색
+            //     borderColor: 'rgba(87, 98, 255, 1)',//선 테두리색
+            //     borderWidth: 1,
+            //     data: spo2s
+            // },
             {
                 type:'line',
                 label: 'Temperature',
@@ -93,7 +93,7 @@ export default function PatientState({patientName,adminName,highestHeartRate,low
                     </div>
                     <hr className={style.hr_dotted}></hr>
 
-                    <span className={style.bio_title}>산소포화도</span>
+                    {/* <span className={style.bio_title}>산소포화도</span>
                     <div className={style.bio_val_box}>
                         <div>최저</div>
                         <div>{lowestSpo2}</div>
@@ -102,7 +102,7 @@ export default function PatientState({patientName,adminName,highestHeartRate,low
                         <div>최고</div>
                         <div>{highestSpo2}</div>
                     </div>
-                    <hr className={style.hr_dotted}></hr>
+                    <hr className={style.hr_dotted}></hr> */}
 
                     <span>관리자</span>
                     <span className={style.name_box}>{adminName}</span>
